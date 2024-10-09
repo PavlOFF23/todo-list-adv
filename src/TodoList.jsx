@@ -16,9 +16,9 @@ import TodoForm from "./TodoForm";
 
 
 const fakeTasks = [
-    {id: uuid(), name: "overthrow Riigikogu", done: false, starred: true},
-    {id: uuid(), name: "pokakat", done: false, starred: false},
-    {id: uuid(), name: "popit kofe", done: true, starred: true},
+    {id: uuid(), name: "Overthrow Riigikogu", done: false, starred: true},
+    {id: uuid(), name: "Deedlee doo", done: false, starred: false},
+    {id: uuid(), name: "Popit kofe", done: true, starred: true},
 ]
 
 export default function TodoList(todos){
@@ -41,25 +41,29 @@ export default function TodoList(todos){
         setTasks(oldTasks => [...oldTasks, {id: uuid(), name:taskName, done: false, starred: false}])
     }
 
+    const removeTask = (id) => {
+        setTasks(oldTasks => [...oldTasks].filter(t => t.id !== id))
+    }
+
 
 
     return (
         <Box component="section" sx={{ 
-            paddingTop: 10, 
             border: '1px solid grey',
             borderRadius: '10px',
-            width: '75%',
+            width: '100%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            minWidth: '500px',
             minHeight: '500px'
         }}>
             <Box>
             <Typography  
                 variant="h2" 
                 component="h2"
-                sx={{display: 'inline-block', pb: '25px'}}
+                sx={{display: 'inline-block', 
+                py: 6,
+                textShadow: '10px 10px 15px rgba(0, 0, 0, 0.2);'}}
             >
             ✅Todos:
             </Typography>
@@ -76,9 +80,15 @@ export default function TodoList(todos){
                         key={task.id}
                         toggleDone={() => handleToggleDone(task.id)}
                         toggleStar={() => handleToggleStar(task.id)}
+                        deleteTask={() => removeTask(task.id)}
                     />)
                 }
             </Box>
+            {
+                tasks.length === 0 && <Typography
+                variant='h5'
+                >🕺Woah, you done for real?🪩</Typography>
+            }
             <Box sx={{my:"50px"}}>
             <TodoForm addTask={createTask}/>
             </Box>

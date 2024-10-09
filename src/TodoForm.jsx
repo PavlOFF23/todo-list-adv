@@ -19,8 +19,8 @@ export default function TodoForm({addTask}){
     const handleSubmit = (e) => {
         e.preventDefault();
         if (text === '') {
-            alert("You're not very intelligent, are you?");
-            return; // Прерываем выполнение функции, если текст пустой
+            alert("Are you so sure that you wanna do nothing or you got nothing to do?🌚");
+            return;
         }
         addTask(text);
         setText('');
@@ -31,7 +31,8 @@ export default function TodoForm({addTask}){
         <form action=""
         onSubmit={handleSubmit}>
             <Typography
-            variant="button">
+            variant="body1"
+            cx={{color: 'grey'}}>
             What you do, big boss? 
             </Typography>
             <Divider />

@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-export default function Todo({ name, done, starred, toggleDone, toggleStar }) {
+export default function Todo({ name, done, starred, toggleDone, toggleStar, deleteTask }) {
 
     return (
         <Box
@@ -53,7 +53,7 @@ export default function Todo({ name, done, starred, toggleDone, toggleStar }) {
                 
             </Box>
         </Paper>
-        <IconButton aria-label="delete" size="small">
+        <IconButton aria-label="delete" size="small" onClick={deleteTask}>
         <DeleteIcon fontSize="inherit" />
         </IconButton>
         </Box>

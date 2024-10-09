@@ -17,16 +17,18 @@ function App() {
         display: 'flex',
         justifyContent: 'center',
         my: '50px',
-        borderRadius: '10px',
+        borderRadius: '10px'
       }}>
       <Paper sx={{
-        borderRadius: '10px'
+        borderRadius: '10px',
+        width: '80%',
+        minWidth: '500px',
+        minHeight: '500px'
       }}
       elevation={12}>
       <TodoList/>
       </Paper>
       </Box>
-      
       <p>You know, sometimes it ain't the way you want, and in the place where you'd want it to be. And it's fine.</p>
     </>
   )
