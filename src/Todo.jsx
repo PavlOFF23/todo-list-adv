@@ -56,8 +56,6 @@ export default function Todo({ name, done, starred, toggleDone, toggleStar, dele
                         checked={done}
                         onClick={toggleDone}
                     />
-
-                    {/* Если isEditing = true, отображаем TextField, иначе Typography */}
                     {isEditing ? (
                         <TextField
                             variant="standard"
