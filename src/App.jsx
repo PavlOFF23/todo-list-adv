@@ -23,7 +23,8 @@ function App() {
         borderRadius: '10px',
         width: '80%',
         minWidth: '500px',
-        minHeight: '500px'
+        minHeight: '500px',
+        maxWidth: '800px'
       }}
       elevation={12}>
       <TodoList/>

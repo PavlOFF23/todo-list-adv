@@ -8,10 +8,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CreateIcon from '@mui/icons-material/Create';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
-export default function TodoForm({ addTask }) {
-
+export default function TodoForm({ addTask, categories }) { 
     const [taskNameText, setText] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState(''); 
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -21,29 +24,38 @@ export default function TodoForm({ addTask }) {
     const handleClose = () => {
         setOpen(false);
         setText('');
+        setSelectedCategory(''); // Сбрасываем выбранную категорию при закрытии
     };
 
     const handleChange = (e) => {
         setText(e.target.value);
     };
 
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value); // Обновляем выбранную категорию
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (taskNameText === '') {
-            alert("Are you sure that you want to do nothing or have nothing to do?🌚");
+        if (taskNameText === '') { // Проверяем заполненность полей
+            alert("Please fill in the task name.");
             return;
         }
 
-        addTask(taskNameText);
+        // Находим выбранную категорию
+        const selectedCategoryData = categories.find(category => category.id === selectedCategory);
+        const categoryIcon = selectedCategoryData ? selectedCategoryData.icon : ''; // Получаем иконку выбранной категории
+
+        addTask(taskNameText, selectedCategory, categoryIcon); // Передаем иконку в addTask
         setText('');
+        setSelectedCategory('');
         handleClose();
     };
 
-    // Новый обработчик для нажатия клавиш
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            handleSubmit(e); // Вызываем отправку формы
+            handleSubmit(e);
         }
     };
 
@@ -57,9 +69,7 @@ export default function TodoForm({ addTask }) {
                 Add Task
             </Button>
 
-            <Dialog 
-            open={open} 
-            onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Add New Task</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -76,14 +86,30 @@ export default function TodoForm({ addTask }) {
                         variant="standard"
                         value={taskNameText}
                         onChange={handleChange}
-                        onKeyDown={handleKeyDown} // Добавлено
+                        onKeyDown={handleKeyDown}
                     />
+                    {/* Добавляем выпадающий список для выбора категории */}
+                    <InputLabel id="category-label" sx={{ mt: 2 }}>Category</InputLabel>
+                    <Select
+                        labelId="category-label"
+                        value={selectedCategory}
+                        onChange={handleCategoryChange}
+                        fullWidth
+                        variant="standard"
+                    >
+                        <MenuItem value="">
+                            <em>None</em>
+                        </MenuItem>
+                        {categories.map(category => (
+                            <MenuItem key={category.id} value={category.id}>
+                                {category.icon} {category.name}
+                            </MenuItem>
+                        ))}
+                    </Select>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button 
-                    onClick={handleSubmit} 
-                    type="submit">
+                    <Button onClick={handleSubmit} type="submit">
                         Add Task
                     </Button>
                 </DialogActions>
