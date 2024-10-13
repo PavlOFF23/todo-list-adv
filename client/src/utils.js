@@ -34,3 +34,12 @@ export const removeTaskById = (tasks, id) => {
 export const updateLocalStorage = (key, data) => {
     localStorage.setItem(key, JSON.stringify(data));
 };
+
+export const addCategory = (name, icon) => {
+    const newCategory = { id: uuid(), name, icon };
+    setCategories(oldCategories => {
+        const updatedCategories = [...oldCategories, newCategory];
+        updateLocalStorage("categories", updatedCategories); 
+        return updatedCategories;
+    });
+};
