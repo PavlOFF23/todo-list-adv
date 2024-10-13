@@ -70,7 +70,7 @@ export default function TodoList() {
         const newCategory = { id: uuid(), name, icon };
         setCategories(oldCategories => {
             const updatedCategories = [...oldCategories, newCategory];
-            updateLocalStorage("categories", updatedCategories); // Сохраняем категории в локальное хранилище
+            updateLocalStorage("categories", updatedCategories); 
             return updatedCategories;
         });
     };
@@ -136,7 +136,7 @@ export default function TodoList() {
                             toggleStar={() => handleToggleStar(task.id)}
                             deleteTask={() => removeTask(task.id)}
                             editTask={(newName) => editTask(task.id, newName)}
-                            categoryIcon={task.categoryIcons} // Предполагается, что у вас есть это свойство в задаче
+                            categoryIcon={task.categoryIcons} 
                         />
                         ))}
                         {filteredTasks.length === 0 && (
