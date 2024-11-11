@@ -27,9 +27,6 @@ import StarIcon from "@mui/icons-material/Star"; // Import StarIcon
 import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
 import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
-import { DndContext } from "@dnd-kit/core";
-import { SortableContext, arrayMove, useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 
 
 export default function TodoList() {
