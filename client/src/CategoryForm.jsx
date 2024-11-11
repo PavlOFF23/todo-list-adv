@@ -1,4 +1,5 @@
 import { useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton'; // Исправлено импорт IconButton
 import TextField from '@mui/material/TextField';
@@ -10,6 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Button from '@mui/material/Button'; // Убедитесь, что Button импортирован
 
+// eslint-disable-next-line react/prop-types
 export default function CategoryForm({ addCategory }) {
     const [open, setOpen] = useState(false);
     const [categoryNameText, setCategoryNameText] = useState('');

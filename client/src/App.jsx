@@ -1,17 +1,26 @@
-import { useState } from 'react'
+/* eslint-disable no-unused-vars */
 import './App.css'
 import TodoList from './TodoList'
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid2';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#00C853', // Яркий зелёный цвет
+      },
+      secondary: {
+        main: '#FFC107', // Дополнительный цвет можно оставить или поменять
+      },
+    },
+  });
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       
       <Box sx={{
         display: 'flex',
@@ -22,7 +31,7 @@ function App() {
       <Paper sx={{
         borderRadius: '10px',
         width: '80%',
-        minWidth: '500px',
+        minWidth: '400px',
         minHeight: '500px',
         maxWidth: '800px'
       }}
@@ -30,8 +39,8 @@ function App() {
       <TodoList/>
       </Paper>
       </Box>
-      <p>You know, sometimes it ain't the way you want, and in the place where you'd want it to be. And it's fine.</p>
-    </>
+      <p>You know, sometimes it ain&apos;t the way you want, and in the place where you&apos;d want it to be. And it&apos;s fine.</p>
+    </ThemeProvider>
   )
 }
 
